@@ -7,7 +7,7 @@ from web3 import HTTPProvider, Web3
 from monitoring_service import MonitoringService
 from monitoring_service.api.rest import ServiceApi
 from monitoring_service.blockchain import BlockchainMonitor
-from monitoring_service.state_db import StateDB
+from monitoring_service.state_db import StateDBSqlite
 from raiden_contracts.contract_manager import ContractManager, contracts_precompiled_path
 from raiden_libs.transport import MatrixTransport
 
@@ -88,7 +88,7 @@ def main(
     web3 = Web3(HTTPProvider(eth_rpc))
     contract_manager = ContractManager(contracts_precompiled_path())
     blockchain = BlockchainMonitor(web3, contract_manager)
-    db = StateDB(state_db)
+    db = StateDBSqlite(state_db)
 
     monitor = MonitoringService(
         contract_manager,

@@ -8,7 +8,7 @@ from eth_utils import encode_hex, is_address, is_checksum_address, is_same_addre
 
 from monitoring_service.blockchain import BlockchainMonitor
 from monitoring_service.exceptions import ServiceNotRegistered, StateDBInvalid
-from monitoring_service.state_db import StateDB
+from monitoring_service.state_db import StateDBSqlite
 from monitoring_service.tasks import OnChannelClose, OnChannelSettle, StoreMonitorRequest
 from monitoring_service.utils import is_service_registered
 from raiden_contracts.constants import ChannelEvent
@@ -41,7 +41,7 @@ class MonitoringService(gevent.Greenlet):
     def __init__(
         self,
         private_key: str,
-        state_db: StateDB,
+        state_db: StateDBSqlite,
         transport: Transport,
         blockchain: BlockchainMonitor,
         monitor_contract_address: Address,
@@ -51,7 +51,7 @@ class MonitoringService(gevent.Greenlet):
         assert isinstance(private_key, str)
         assert isinstance(transport, Transport)
         assert isinstance(blockchain, BlockchainMonitor)
-        assert isinstance(state_db, StateDB)
+        assert isinstance(state_db, StateDBSqlite)
         self.private_key = private_key
         self.transport = transport
         self.blockchain = blockchain
