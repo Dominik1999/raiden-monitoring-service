@@ -111,7 +111,7 @@ def test_e2e(
 
     monitoring_service.transport.receive_fake_data(monitor_request.serialize_full())
     gevent.sleep(TEST_POLL_INTERVAL)
-    assert channel_id in monitoring_service.monitor_requests
+    assert (channel_id, c1.address) in monitoring_service.monitor_requests
 
     c2.close_channel(c1.address, balance_proof_c1)
     # Wait one block until the ChannelClosed event is confirmed and handled

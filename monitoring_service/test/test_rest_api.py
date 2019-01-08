@@ -19,6 +19,6 @@ def test_rest_api(monitoring_service, rest_api, generate_raiden_client):
     assert len(
         [
             x for x in ret.json()
-            if x['balance_proof']['channel_identifier'] == channel_id
+            if x['channel_identifier'] == channel_id
         ],
     ) == 1

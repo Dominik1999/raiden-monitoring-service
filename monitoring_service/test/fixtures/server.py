@@ -44,7 +44,7 @@ def monitoring_service(
         server_private_key,
         blockchain,
         dummy_transport,
-        state_db_mock,
+        state_db_sqlite,
         web3,
         monitoring_service_contract,
         send_funds,
@@ -63,7 +63,7 @@ def monitoring_service(
         server_private_key,
         transport=dummy_transport,
         blockchain=blockchain,
-        state_db=state_db_mock,
+        state_db=state_db_sqlite,
         monitor_contract_address=monitoring_service_contract.address,
         contract_manager=contracts_manager,
     )
